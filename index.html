@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Show/Hide Data Table</title>
+</head>
+<body>
+  <h2 style="text-align: center;">User Data</h2>
+
+  <!-- Button -->
+  <div style="text-align: center;">
+    <button id="toggleBtn">Show Data</button>
+  </div>
+
+  <!-- Placeholder for the table -->
+  <div id="tableContainer" style="margin-top:20px; text-align: center;"></div>
+
+  <script>
+    // Single JSON object
+    const data = { "Name": "Subhamay", "Ph No.": "6290xxxxxx", "Location": "Kolkata" };
+
+    // Track whether table is visible
+    let isVisible = false;
+
+    document.getElementById("toggleBtn").onclick = function() {
+      const container = document.getElementById("tableContainer");
+
+      if (!isVisible) {
+        // Build table
+        let table = "<table border='1' cellspacing='0' cellpadding='8' style='margin: auto; border-collapse: collapse;'>";
+        
+        // Header row
+        table += "<tr>";
+        for (let key in data) {
+          table += "<th>" + key + "</th>";
+        }
+        table += "</tr>";
+
+        // Data row
+        table += "<tr>";
+        for (let key in data) {
+          table += "<td>" + data[key] + "</td>";
+        }
+        table += "</tr>";
+
+        table += "</table>";
+
+        // Show table
+        container.innerHTML = table;
+        document.getElementById("toggleBtn").innerText = "Hide Data";
+        isVisible = true;
+
+      } else {
+        // Hide table
+        container.innerHTML = "";
+        document.getElementById("toggleBtn").innerText = "Show Data";
+        isVisible = false;
+      }
+    };
+  </script>
+</body>
+</html>
